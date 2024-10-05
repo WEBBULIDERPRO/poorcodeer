@@ -1,0 +1,240 @@
+<html>
+ <head>
+  <title>Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+        }
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .animate-wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+        .glow {
+            color: #FFD700;
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700, 0 0 50px #FFD700, 0 0 60px #FFD700, 0 0 70px #FFD700;
+        }
+        .glow-blue {
+            color: #00FF00;
+            text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF, 0 0 40px #00FFFF, 0 0 50px #00FFFF, 0 0 60px #00FFFF, 0 0 70px #00FFFF;
+        }
+        .glow-multi {
+            background: #D0A9A9;
+            color: white;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-shadow: 0 0 10px red, 0 0 20px green, 0 0 30px orange, 0 0 40px red, 0 0 50px green, 0 0 60px orange, 0 0 70px red;
+        }
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: white;
+            color: #D0A9A9;
+            font-size: 24px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .social-icon:hover {
+            background-color: #D0A9A9;
+            color: white;
+        }
+        .button {
+            background-color: #1a1a1a;
+            color: #b3b3b3;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .button i {
+            margin-right: 10px;
+        }
+        .button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, red, purple, red, purple);
+            background-size: 400%;
+            z-index: 0;
+            transition: all 0.5s;
+            animation: animateGlow 5s linear infinite;
+        }
+        .button:hover::before {
+            filter: blur(20px);
+        }
+        .button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, red, purple, red, purple);
+            background-size: 400%;
+            z-index: 0;
+            transition: all 0.5s;
+            animation: animateGlow 5s linear infinite;
+            filter: blur(20px);
+        }
+        .button:hover::after {
+            filter: blur(40px);
+        }
+        .button span {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        @keyframes animateGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        @keyframes clickEffect {
+            0% {
+                box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        .button:active {
+            animation: clickEffect 0.5s ease-out;
+        }
+        .go-back-button {
+            background-color: #1a1a1a;
+            color: #b3b3b3;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .go-back-button i {
+            margin-right: 10px;
+        }
+        .go-back-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, red, purple, red, purple);
+            background-size: 400%;
+            z-index: 0;
+            transition: all 0.5s;
+            animation: animateGlow 5s linear infinite;
+        }
+        .go-back-button:hover::before {
+            filter: blur(20px);
+        }
+        .go-back-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, red, purple, red, purple);
+            background-size: 400%;
+            z-index: 0;
+            transition: all 0.5s;
+            animation: animateGlow 5s linear infinite;
+            filter: blur(20px);
+        }
+        .go-back-button:hover::after {
+            filter: blur(40px);
+        }
+        .go-back-button span {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+  </style>
+ </head>
+ <body class="bg-gradient-to-r from-blue-900 to-black h-screen flex items-center justify-center">
+  <a href="mainpage.html" class="go-back-button">
+    <span><i class="fas fa-arrow-left"></i>Go Back</span>
+  </a>
+
+  <div class="relative flex items-center justify-center space-x-4">
+   <div class="absolute bg-green-500 rounded-full h-24 w-24 left-0 animate-wave"></div>
+   <div class="absolute bg-pink-500 rounded-full h-16 w-16 left-12 animate-wave" style="animation-delay: 0.5s;"></div>
+   <div class="absolute bg-orange-500 rounded-full h-20 w-20 left-24 animate-wave" style="animation-delay: 1s;"></div>
+   <div class="absolute bg-green-500 rounded-full h-16 w-16 right-12 animate-wave" style="animation-delay: 1.5s;"></div>
+   <div class="absolute bg-pink-500 rounded-full h-4 w-4 right-0 animate-wave" style="animation-delay: 2s;"></div>
+   <div class="absolute bg-orange-500 rounded-full h-12 w-12 right-24 animate-wave" style="animation-delay: 2.5s;"></div>
+   <div class="glass h-48 w-48 animate-wave" style="animation-delay: 3s;"></div>
+   <div class="glass h-64 w-40 animate-wave" style="animation-delay: 3.5s;"></div>
+   <div class="glass h-32 w-64 animate-wave" style="animation-delay: 4s;"></div>
+   <main class="flex flex-col items-center justify-center p-6 absolute">
+    <div class="md:w-3/4 mt-6 md:mt-0 text-center space-y-4">
+     <h1 class="text-4xl font-bold text-white">ABOUT ME</h1>
+     <h1 class="text-4xl font-bold text-white mt-4">
+      Hello, my name is <span class="glow">Kavon Hicks or KH</span>
+     </h1>
+     <h2 class="text-2xl glow-blue mt-2">Web designer/coder</h2>
+     <p class="text-white font-bold mt-4 text-justify">
+      I'm a web designer and developer with 5 years of experience 👨‍💻. I had the opportunity to work at Google for 3.5 years, where I gained invaluable skills and contributed to some amazing projects 🚀. Since then, I’ve led and worked on multiple projects, handling most of the coding myself while integrating AI tools to enhance productivity and innovation 🤖. Some of the apps I've built include Chess ♟️, Daak, and various Amazon-related tools 🛠️.
+     </p>
+     <button class="glow-multi hover:bg-[#C08A8A]">GET IN TOUCH!</button>
+     <p class="mt-4 text-gray-600">Contact@websitename.com</p>
+     <div class="mt-4 space-x-4 flex justify-center">
+      <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>
+      <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a>
+      <a class="social-icon" href="#"><i class="fab fa-instagram"></i></a>
+      <a class="social-icon" href="#"><i class="fab fa-linkedin-in"></i></a>
+     </div>
+    </div>
+   </main>
+  </div>
+ </body>
+</html>

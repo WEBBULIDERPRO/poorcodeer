@@ -1,0 +1,344 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Radio Ava</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1E1E2C;
+      color: white;
+    }
+    .genre-card {
+      transition: transform 0.3s ease-in-out;
+    }
+    .genre-card:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+    .glow {
+      animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+      }
+      to {
+        box-shadow: 0 0 20px rgba(255, 255, 0, 1);
+      }
+    }
+    .shuffle {
+      display: flex;
+      flex-wrap: wrap;
+      transition: all 0.5s ease-in-out;
+    }
+    .shuffle > div {
+      flex: 1 1 45%;
+      margin: 10px;
+    }
+    .shuffle > div:hover {
+      cursor: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-music.woff2'), auto;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    .wifi-signal {
+      font-size: 2rem;
+      animation: pulse 1s infinite;
+    }
+    .icon-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    .icon-container::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background-color: rgba(255, 223, 0, 0.3);
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+    .icon-container:hover::before {
+      width: 4rem;
+      height: 4rem;
+    }
+    .icon-container:active::before {
+      background-color: rgba(255, 223, 0, 0.5);
+    }
+    .icon-container.active {
+      transform: scale(1.2) translateZ(10px);
+    }
+    .notification-badge {
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+    .ringing {
+      animation: ring 0.5s linear infinite;
+    }
+    @keyframes ring {
+      0% {
+        transform: rotate(0);
+      }
+      25% {
+        transform: rotate(15deg);
+      }
+      50% {
+        transform: rotate(0);
+      }
+      75% {
+        transform: rotate(-15deg);
+      }
+      100% {
+        transform: rotate(0);
+      }
+    }
+    .glow-text {
+      color: gold;
+      animation: glow-text 1.5s infinite alternate;
+    }
+    @keyframes glow-text {
+      from {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+      to {
+        text-shadow: 0 0 20px rgba(255, 215, 0, 1);
+      }
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #000;
+      color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards, shadowGlow 1.5s infinite alternate;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes shadowGlow {
+      from {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+      to {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+      }
+    }
+    .popup h2 {
+      margin-bottom: 20px;
+    }
+    .popup p {
+      margin-bottom: 30px;
+    }
+    .popup button {
+      background-color: #ffcc00;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .popup button:hover {
+      background-color: #e6b800;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+    }
+    body.no-scroll {
+      overflow: hidden;
+    }
+  </style>
+  <script>
+    function closeModal() {
+      document.getElementById('feedback-modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+      document.body.classList.remove('no-scroll');
+    }
+    function showModal() {
+      document.getElementById('feedback-modal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+      document.body.classList.add('no-scroll');
+    }
+    function toggleActive(element) {
+      const icons = document.querySelectorAll('.icon-container');
+      icons.forEach(icon => icon.classList.remove('ringing', 'active'));
+      element.classList.add('ringing', 'active');
+    }
+    window.onload = function() {
+      showModal();
+    }
+  </script>
+</head>
+<body class="flex flex-col justify-center items-center min-h-screen relative">
+  <div class="w-full max-w-6xl bg-gray-900 rounded-3xl p-4 overflow-y-auto h-screen">
+    <header class="flex justify-between items-center mb-4 bg-gray-800 p-4 rounded-lg">
+      <div>
+        <h1 class="text-lg font-semibold">Welcome To</h1>
+        <h2 class="text-2xl font-bold">SoundWave</h2>
+      </div>
+      <div class="text-center">
+        <h2 class="text-xl font-semibold glow-text">Beta Test</h2>
+      </div>
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-signal wifi-signal text-red-500" id="wifiSignal"></i>
+        <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
+          <img alt="Profile picture" class="w-full h-full object-cover" height="100" src="https://storage.googleapis.com/a1aa/image/XZ9fhkj4Ihy8Ky2fEJm1CcuUbxPRe7wsZRXfiVsVnw4t08MOB.jpg" width="100"/>
+        </div>
+      </div>
+    </header>
+    <div class="relative mb-4">
+      <input class="w-full p-2 pl-10 rounded-lg bg-gray-800 text-white focus:outline-none" placeholder="Search in All" type="text"/>
+      <i class="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+      <i class="fas fa-sliders-h absolute right-3 top-2.5 text-gray-400"></i>
+    </div>
+    <div class="relative mb-4 flex items-center justify-center">
+      <div class="relative">
+        <img alt="Album cover of Sogand" class="w-1/2 mx-auto rounded-2xl shadow-lg" height="150" src="https://storage.googleapis.com/a1aa/image/OqJot1XPBZonLVhFtXc4CWq8qs051yJu6OcU00Q4HiexbmxJA.jpg" width="150"/>
+        <button class="absolute top-0 left-0 bg-blue-500 text-white text-lg font-bold py-2 px-8 rounded-full shadow-md button-glow" onclick="showModal()" style="font-family: 'Poppins', sans-serif;">
+          What's New <span class="fas fa-fire"></span>
+        </button>
+      </div>
+    </div>
+    <div class="absolute bottom-4 left-0 w-full text-center">
+      <p class="text-2xl font-bold text-white drop-shadow-lg">Sogand</p>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-semibold">Hot Music</h3>
+      <a class="text-purple-500" href="#">See All</a>
+    </div>
+    <div class="flex space-x-4 overflow-x-auto mb-4">
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Sunshine" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/MypjAoEuuDJrHVKO0fNrfg25ZJ3LVGfXD7pdgZ32TA689eMOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Sunshine</p>
+        <p class="text-xs text-gray-400">Artist Alpha</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Moonlight" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/ht3Kafu1qnRTE6Le7grTlzasobLU6oru3LcFZMfCmv1Ne9MOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Moonlight</p>
+        <p class="text-xs text-gray-400">Artist Beta</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Starlight" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/sAuUes0eJtmXvUnc8trV5xZq5UM2jWj7dUcVAeR7Po2Ce9MOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Starlight</p>
+        <p class="text-xs text-gray-400">Artist Gamma</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Raindrops" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/LWM0Khfxk3zGY6qppVs7flXFtYZnAd7XXJzlw82uKm1IfeMOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Raindrops</p>
+        <p class="text-xs text-gray-400">Artist Delta</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Fireflies" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/1y7jNqfMz8Ueq0GXAmzfzKYgbVXhxrhDwEpNYYnvE5hFe9MOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Fireflies</p>
+        <p class="text-xs text-gray-400">Artist Epsilon</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Thunder" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/x8psoeeVJfe2kQkqbA4RkYNUXtWYunWvAOHO9OkZPuwe37ZcC.jpg" width="100"/>
+        <p class="text-sm mt-2">Thunder</p>
+        <p class="text-xs text-gray-400">Artist Zeta</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Breeze" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/vGXmJePuxVyvS6NhpervS0YGhhkSuiQZvRKCs9o1ykN7eeMOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Breeze</p>
+        <p class="text-xs text-gray-400">Artist Eta</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Waves" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/nPWfteaMJ9hKiUo8dwIeLeVb5UwTbiHNhlWOhYrB8uk079MOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Waves</p>
+        <p class="text-xs text-gray-400">Artist Theta</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Echoes" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/onsFceR6yWQHEqeJYPmaejaTL4R568CGf0EdGsfFIlKv47ZcC.jpg" width="100"/>
+        <p class="text-sm mt-2">Echoes</p>
+        <p class="text-xs text-gray-400">Artist Iota</p>
+      </div>
+      <div class="flex-shrink-0 w-24">
+        <img alt="Album cover of Whispers" class="w-full rounded-lg" height="100" src="https://storage.googleapis.com/a1aa/image/e78XplmqS210diztqJjPTTbzsu0Geqpn6YiQnNRTyVIEfeMOB.jpg" width="100"/>
+        <p class="text-sm mt-2">Whispers</p>
+        <p class="text-xs text-gray-400">Artist Kappa</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg flex items-center justify-around w-full h-32 p-8 sticky bottom-0">
+      <div class="icon-container active ringing" onclick="toggleActive(this)">
+        <i class="fas fa-home text-yellow-500 text-4xl"></i>
+      </div>
+      <div class="icon-container" onclick="toggleActive(this)">
+        <i class="fas fa-video text-yellow-500 text-4xl"></i>
+      </div>
+      <div class="icon-container" onclick="toggleActive(this)">
+        <i class="fas fa-book text-yellow-500 text-4xl"></i>
+      </div>
+      <div class="icon-container" onclick="toggleActive(this)">
+        <i class="fas fa-user text-yellow-500 text-4xl"></i>
+      </div>
+      <div class="icon-container" onclick="toggleActive(this)">
+        <i class="fas fa-cog text-yellow-500 text-4xl"></i>
+      </div>
+      <div class="icon-container" onclick="toggleActive(this)">
+        <i class="fas fa-bell text-yellow-500 text-4xl"></i>
+        <div class="notification-badge">13+</div>
+      </div>
+    </div>
+  </div>
+  <footer class="w-full bg-gray-800 text-white text-center py-4 mt-4 sticky bottom-0">
+    <p>Welcome to sound wave this is a beta test in the app is getting built right now share feedback with us</p>
+  </footer>
+  <div class="overlay" id="overlay"></div>
+  <div class="popup" id="feedback-modal" style="display: block;">
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center">
+        <i class="fas fa-comment-dots text-xl text-white bg-black rounded-full p-2"></i>
+        <span class="ml-2 text-lg font-semibold text-white">Latest news</span>
+      </div>
+    </div>
+    <h2 class="text-2xl font-bold text-center text-white mb-2">🎶 Latest News still in Beta Test 🎶</h2>
+    <p class="text-center text-gray-400 mb-6">
+      Welcome to SoundWave 🌊🎧! This is a beta version 🛠️ and it's not released yet. Please give me your feedback 📝 on what should be improved! 🙌<br/><br/>
+      Since this is a beta test, there may be some issues ⚠️. If you encounter any, let me know immediately at my Gmail 📧.<br/><br/>
+      This app is inspired by Spotify and Apple Music 🎵. I'm still working on it, so it's not perfect yet.
+    </p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</body>
+</html>

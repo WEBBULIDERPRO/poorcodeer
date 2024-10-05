@@ -1,0 +1,893 @@
+<html></html>
+<head>
+  <title>Teeno App</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="test.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
+  <style>
+     body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0b0d1a;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+      position: static;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #2a2a2a;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    .header:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+    .header .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ff3366;
+    }
+    .header nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .header .actions a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px 0;
+    }
+    .hero .text {
+      flex: 1;
+      padding-right: 20px;
+    }
+    .hero .text h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .hero .text p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .hero .text .buttons {
+      display: flex;
+      gap: 20px;
+    }
+    .hero .text .buttons .button {
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 30px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .hero .text .buttons .button.red {
+      background: linear-gradient(45deg, #ff3366, #ff6633);
+    }
+    .hero .text .buttons .button.blue {
+      background: linear-gradient(45deg, #3366ff, #9933ff);
+    }
+    .hero .text .buttons .button:hover {
+      box-shadow: 0 0 20px rgba(255, 99, 71, 0.7);
+    }
+    .hero .text .buttons .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: all 0.3s ease;
+      opacity: 0;
+      z-index: 1;
+    }
+    .hero .text .buttons .button.red::before {
+      background: linear-gradient(45deg, #ff3366, #ff6633);
+    }
+    .hero .text .buttons .button.blue::before {
+      background: linear-gradient(45deg, #3366ff, #9933ff);
+    }
+    .hero .text .buttons .button:hover::before {
+      opacity: 1;
+      box-shadow: 0 0 30px rgba(255, 99, 71, 1);
+    }
+    .hero .text .buttons .button.blue:hover::before {
+      box-shadow: 0 0 30px rgba(51, 102, 255, 1);
+    }
+    .hero .text .buttons .button span {
+      position: relative;
+      z-index: 2;
+      animation: glow 1.5s infinite alternate;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366, 0 0 40px #ff3366;
+      }
+      to {
+        text-shadow: 0 0 20px #ff3366, 0 0 30px #ff3366, 0 0 40px #ff3366, 0 0 50px #ff3366;
+      }
+    }
+    .hero .text .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .hero .text .social-icons i {
+      background-color: #888;
+      color: #fff;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .hero .text .social-icons i:hover {
+      transform: scale(1.1);
+    }
+    .hero .text .social-icons i:hover.fa-facebook {
+      box-shadow: 0 0 20px rgba(59, 89, 152, 0.7);
+    }
+    .hero .text .social-icons i:hover.fa-twitter {
+      box-shadow: 0 0 20px rgba(29, 161, 242, 0.7);
+    }
+    .hero .text .social-icons i:hover.fa-instagram {
+      box-shadow: 0 0 20px rgba(225, 48, 108, 0.7);
+    }
+    .hero .text .social-icons i:hover.fa-linkedin {
+      box-shadow: 0 0 20px rgba(0, 119, 181, 0.7);
+    }
+    .hero .text .user-count {
+      margin-top: 20px;
+      font-size: 24px;
+      font-family: 'Pacifico', cursive;
+      color: #ff3366;
+      text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+      animation: glowUserCount 1.5s infinite alternate;
+    }
+    @keyframes glowUserCount {
+      from {
+        text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+      }
+      to {
+        text-shadow: 0 0 20px #ff3366, 0 0 30px #ff3366, 0 0 40px #ff3366;
+      }
+    }
+    .hero .image {
+      flex: 1;
+      text-align: center;
+    }
+    .hero .image .dashboard {
+      background-color: #2a2a2a;
+      border-radius: 10px;
+      padding: 20px;
+      width: 400px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    .hero .image .dashboard .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .hero .image .dashboard .header div {
+      text-align: center;
+    }
+    .hero .image .dashboard .header div h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .hero .image .dashboard .header div p {
+      margin: 0;
+      font-size: 14px;
+      color: #888888;
+    }
+    .hero .image .dashboard .header div p span {
+      color: #00bfff;
+    }
+    .hero .image .dashboard .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .hero .image .dashboard .buttons button {
+      background-color: #333333;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .image .dashboard .buttons button.active {
+      background-color: #00bfff;
+    }
+    .hero .image .dashboard .buttons button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 191, 255, 0.5);
+      transition: all 0.3s ease;
+      opacity: 0;
+      z-index: 1;
+    }
+    .hero .image .dashboard .buttons button:hover::before {
+      opacity: 1;
+      box-shadow: 0 0 30px rgba(0, 191, 255, 1);
+    }
+    .hero .image .dashboard .buttons button span {
+      position: relative;
+      z-index: 2;
+      animation: glow 1.5s infinite alternate;
+    }
+    .hero .image .dashboard .buttons button:nth-child(2)::before {
+      background-color: rgba(255, 165, 0, 0.5);
+    }
+    .hero .image .dashboard .buttons button:nth-child(2):hover::before {
+      box-shadow: 0 0 30px rgba(255, 165, 0, 1);
+    }
+    .hero .image .dashboard .buttons button:nth-child(2) span {
+      animation: glowOrange 1.5s infinite alternate;
+    }
+    .hero .image .dashboard .buttons button:nth-child(3)::before {
+      background-color: rgba(50, 205, 50, 0.5);
+    }
+    .hero .image .dashboard .buttons button:nth-child(3):hover::before {
+      box-shadow: 0 0 30px rgba(50, 205, 50, 1);
+    }
+    .hero .image .dashboard .buttons button:nth-child(3) span {
+      animation: glowGreen 1.5s infinite alternate;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff, 0 0 40px #00bfff;
+      }
+      to {
+        text-shadow: 0 0 20px #00bfff, 0 0 30px #00bfff, 0 0 40px #00bfff, 0 0 50px #00bfff;
+      }
+    }
+    @keyframes glowOrange {
+      from {
+        text-shadow: 0 0 10px #ffa500, 0 0 20px #ffa500, 0 0 30px #ffa500, 0 0 40px #ffa500;
+      }
+      to {
+        text-shadow: 0 0 20px #ffa500, 0 0 30px #ffa500, 0 0 40px #ffa500, 0 0 50px #ffa500;
+      }
+    }
+    @keyframes glowGreen {
+      from {
+        text-shadow: 0 0 10px #32cd32, 0 0 20px #32cd32, 0 0 30px #32cd32, 0 0 40px #32cd32;
+      }
+      to {
+        text-shadow: 0 0 20px #32cd32, 0 0 30px #32cd32, 0 0 40px #32cd32, 0 0 50px #32cd32;
+      }
+    }
+    .hero .image .dashboard .chart {
+      position: relative;
+      height: 200px;
+    }
+    .hero .image .dashboard .chart canvas {
+      width: 100%;
+      height: 100%;
+    }
+    .hero .image .dashboard .tooltip {
+      position: absolute;
+      background-color: #4b0082;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      display: none;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+    }
+    .hero .image .dashboard .clock {
+      text-align: center;
+    }
+    .hero .image .dashboard .clock h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .hero .image .dashboard .clock p {
+      margin: 0;
+      font-size: 14px;
+      color: #888888;
+    }
+    .how-it-works {
+      text-align: center;
+      padding: 50px 0;
+      height: auto;
+    }
+    .how-it-works h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .how-it-works .steps {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .how-it-works .step {
+      width: 200px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .how-it-works .step i {
+      font-size: 40px;
+      color: #ff3366;
+      margin-bottom: 10px;
+    }
+    .how-it-works .step h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .how-it-works .step p {
+      font-size: 14px;
+      color: #aaa;
+    }
+    .effective-app {
+  display: flex;
+  flex-direction: row-reverse; /* This will move the image to the left and the text to the right */
+  align-items: center;
+  padding: 50px 0;
+}
+.effective-app .image {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+}
+.effective-app .image img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.effective-app .text {
+  flex: 1;
+  padding: 20px;
+  text-align: left; /* Ensure the text is aligned to the left */
+}
+.effective-app .text {
+  flex: 1;
+  padding: 20px;
+  text-align: left; /* Keep the text aligned to the left */
+}
+
+.effective-app .text .buttons {
+  text-align: right; /* This aligns the buttons to the right */
+}
+
+.effective-app .text .buttons a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #ff3366;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-to-top:hover {
+      background-color: #ccc;
+    }
+    .pricing-table {
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+    align-items: stretch; /* Makes all items the same height */
+    margin-left: 177px;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+}
+
+        .pricing-plan {
+            background-color: #131a2a;
+            border-radius: 20px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .pricing-plan.active {
+            border: 2px solid #7f5af0;
+            box-shadow: 0 0 20px #7f5af0;
+        }
+        .pricing-plan h2 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        .pricing-plan p {
+            font-size: 0.8em;
+            color: #a0a6b1;
+            margin-bottom: 10px;
+        }
+        .pricing-plan .price {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        .pricing-plan .price span {
+            font-size: 0.4em;
+            color: #a0a6b1;
+        }
+        .pricing-plan button {
+            background-color: #1f2a48;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .pricing-plan button:hover {
+            background-color: #2a3b67;
+        }
+        .pricing-plan .highlight {
+            background-color: #3a4b8f;
+        }
+        .pricing-plan ul {
+            list-style: none;
+            padding: 0;
+        }
+        .pricing-plan ul li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .pricing-plan ul li i {
+            color: #4caf50;
+            margin-right: 5px;
+        }
+        .pricing-plan::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(58, 75, 143, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .pricing-plan:hover::before {
+            opacity: 1;
+        }
+        .button {
+            background-color: #1a1a1a;
+            color: #b3b3b3;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        .button i {
+            margin-right: 10px;
+        }
+        .button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, red, purple, red, purple);
+            background-size: 400%;
+            z-index: 0;
+            transition: all 0.5s;
+            animation: animateGlow 5s linear infinite;
+        }
+        .button:hover::before {
+            filter: blur(20px);
+        }
+        .button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, red, purple, red, purple);
+            background-size: 400%;
+            z-index: 0;
+            transition: all 0.5s;
+            animation: animateGlow 5s linear infinite;
+            filter: blur(20px);
+        }
+        .button:hover::after {
+            filter: blur(40px);
+        }
+        .button span {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        @keyframes animateGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        @keyframes clickEffect {
+            0% {
+                box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        .button:active {
+            animation: clickEffect 0.5s ease-out;
+        }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      My DESIGN
+    </div>
+    <nav>
+    <div class="actions">
+    </div>
+    <a href="mainpage.html" class="button">
+      <span><i class="fas fa-magic"></i>Go Back</span>
+    </a>
+  </header>  
+      </div>
+    </header>
+    <section class="hero">
+      <div class="text">
+        <h1>
+          Get high Benfit working with me Book me now 
+        </h1>
+        <p>
+          This is a test layout webpage I created in about an hour. There might be some bugs, so please let me know if you find any
+        </p>
+        <div class="buttons">
+          <a href="#" class="button"><span>EXAMPLE</span></a>
+          <a href="#" class="button"><span>EXAMPLE</span></a>
+        </div>
+        <div class="social-icons">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin"></i>
+        </div>
+        <div class="user-count">
+          In just the past month, over 500 people trusted my services! 😊 Let's make you next! ✨
+        </div>
+      </div>
+      <div class="image">
+        <div class="dashboard">
+          <div class="header">
+            <div>
+              <h1 id="time">
+                12:00 PM
+              </h1>
+              <p id="timezone">
+                Timezone
+              </p>
+            </div>
+            <div>
+              <h1 id="revenueValue">
+                $0
+              </h1>
+              <p>
+                REVENUE
+                <span id="revenueChange" style="color: red;">
+                  ↓ 0% YOY
+                </span>
+              </p>
+            </div>
+          </div>
+ <div class="buttons">
+            <button class="active">
+              <span>
+                YEAR
+              </span>
+            </button>
+            <button>
+              <span>
+                MONTH
+              </span>
+            </button>
+            <button>
+              <span>
+                WEEK
+              </span>
+            </button>
+          </div>
+          <div class="chart">
+            <canvas height="200" id="revenueChart" width="400">
+            </canvas>
+            <div class="tooltip" id="tooltip">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="how-it-works">
+      <h2>
+        How my services works 
+      </h2>
+      <body>
+        <div class="pricing-table">
+            <div class="pricing-plan active" onclick="selectPlan(this)">
+                <h2>SLOW STATES</h2>
+                <p>This is going take a little while to get your code and website design</p>
+                <div class="price">$5</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> No custom time for delivery</li>
+                    <li><i class="fas fa-check"></i> Slow delivery</li>
+                    <li><i class="fas fa-check"></i> Can't take UI design just/idea and build it</li>
+                    <li><i class="fas fa-check"></i> Only send to email</li>
+                    <li><i class="fas fa-check"></i> Only accepting PayPal payment method</li>
+                </ul>
+            </div>
+            <div class="pricing-plan highlight" onclick="selectPlan(this)">
+                <h2>DevDollar Express</h2>
+                <p>A middle-ground option with payments processed within 1-5 business days.</p>
+                <div class="price">$15</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Choices how you get the code and design</li>
+                    <li><i class="fas fa-check"></i> Show your UI design and created it</li>
+                    <li><i class="fas fa-check"></i> Accepting credit payment, CashApp & PayPal, etc.</li>
+                    <li><i class="fas fa-check"></i> Custom time for delivery 1-5 business days</li>
+                </ul>
+            </div>
+            <div class="pricing-plan" onclick="selectPlan(this)">
+                <h2>BytePay Instant</h2>
+                <p>The fastest method, offering real-time or same-day payment processing.</p>
+                <div class="price">Prices custom at least $100</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Choices how you get the code at anytime</li>
+                    <li><i class="fas fa-check"></i> Show or I make your UI design in code it</li>
+                    <li><i class="fas fa-check"></i> Accepting any payment</li>
+                    <li><i class="fas fa-check"></i> You choose what time should it be delivered, custom time</li>
+                    <li><i class="fas fa-check"></i> Ultimate power, choose anything and we deliver</li>
+                </ul>
+            </div>
+        </div>
+    
+        <script>
+            const plans = document.querySelectorAll('.pricing-plan');
+    
+            function selectPlan(plan) {
+                plans.forEach(p => p.classList.remove('active'));
+                plan.classList.add('active');
+            }
+        </script>
+    </body>
+    </html>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="image-container">
+        <img alt="Description of the image" height="150" src="43.png" width="150"/>
+      </div>
+      <div class="content">
+        <h1>This is a beta version of my webpage. Im actively working on it and developing an app to complement the site</h1>
+        <p>
+          This is one of the projects Im currently working on. Feel free to test it out—it's still in beta and a work in progress. Both the webpage and app are not fully complete and will need more updates
+        </p>
+        <div class="buttons">
+          <a href="Testsidebar.html">See More</a>
+        </div>
+      </div>
+    </div>    
+      </div>
+    </section>
+  </div>
+  <script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    let currentValue = 0;
+    let previousValue = 0;
+    const revenueValueElement = document.getElementById('revenueValue');
+    const revenueChangeElement = document.getElementById('revenueChange');
+    const tooltip = document.getElementById('tooltip');
+
+    const revenueChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+        datasets: [{
+          label: '2023',
+          data: Array(12).fill(0),
+          borderColor: '#00bfff',
+          backgroundColor: 'rgba(0, 191, 255, 0.1)',
+          fill: true,
+          tension: 0.4,
+          pointBackgroundColor: '#00bfff',
+          pointBorderColor: '#00bfff',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointHoverBackgroundColor: '#4b0082',
+          pointHoverBorderColor: '#4b0082',
+          pointHoverBorderWidth: 10,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            ticks: {
+              color: '#888888',
+            },
+            grid: {
+              display: false,
+            }
+          },
+          y: {
+            display: false,
+          }
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            enabled: false,
+            external: function(context) {
+              const tooltipModel = context.tooltip;
+              if (tooltipModel.opacity === 0) {
+                tooltip.style.opacity = 0;
+                return;
+              }
+
+              const index = tooltipModel.dataPoints[0].dataIndex;
+              const dataset = tooltipModel.dataPoints[0].dataset;
+              const value = dataset.data[index];
+              const previousValue = index > 0 ? dataset.data[index - 1] : 0;
+              const changePercentage = ((value - previousValue) / previousValue) * 100;
+              const randomDate = new Date(2023, index, Math.floor(Math.random() * 28) + 1).toDateString();
+
+              tooltip.innerHTML = `
+                <strong>Date:</strong> ${randomDate}<br>
+                <strong>Value:</strong> $${value.toFixed(2)}<br>
+                <strong>Change:</strong> ${changePercentage >= 0 ? '↑ +' : '↓ -'} ${Math.abs(changePercentage).toFixed(2)}%
+              `;
+
+              const position = context.chart.canvas.getBoundingClientRect();
+              tooltip.style.opacity = 1;
+              tooltip.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+              tooltip.style.top = position.top + window.pageYOffset + tooltipModel.caretY - 90 + 'px';
+              tooltip.style.display = 'block';
+            }
+          }
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true,
+          onHover: function(event, chartElement) {
+            if (chartElement.length) {
+              event.native.target.style.cursor = 'pointer';
+              const tooltipModel = chartElement[0].element;
+              const position = tooltipModel.getProps(['x', 'y'], true);
+              tooltip.style.left = position.x + 'px';
+              tooltip.style.top = position.y - 90 + 'px';
+            } else {
+              event.native.target.style.cursor = 'default';
+              tooltip.style.display = 'none';
+            }
+          }
+        }
+      }
+    });
+
+    function getRandomFluctuation() {
+      return (Math.random() - 0.5) * 20;
+    }
+
+    function updateChart() {
+      const newData = revenueChart.data.datasets[0].data.map((value, index) => {
+        if (index === 0) {
+          return value + getRandomFluctuation();
+        } else {
+          return revenueChart.data.datasets[0].data[index - 1] + getRandomFluctuation();
+        }
+      });
+
+      previousValue = currentValue;
+      currentValue = newData[newData.length - 1];
+      revenueChart.data.datasets[0].data = newData;
+      revenueChart.update();
+
+      revenueValueElement.textContent = `$${currentValue.toFixed(2)}`;
+      const changePercentage = ((currentValue - previousValue) / previousValue) * 100;
+      revenueChangeElement.textContent = `${changePercentage >= 0 ? '↑ +' : '↓ -'} ${Math.abs(changePercentage).toFixed(2)}% YOY`;
+      revenueChangeElement.style.color = changePercentage >= 0 ? 'green' : 'red';
+    }
+
+    setInterval(updateChart, 5000);
+
+    function updateTime() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const formattedHours = hours % 12 || 12;
+      const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+      const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+      const timeString = `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
+      const timezoneString = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      document.getElementById('time').textContent = timeString;
+      document.getElementById('timezone').textContent = timezoneString;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
+</body>
+</html>

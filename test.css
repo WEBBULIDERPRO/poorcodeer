@@ -1,0 +1,132 @@
+.pricing-table {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+}
+.pricing-plan {
+    background-color: #131a2a;
+    border-radius: 20px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+    cursor: pointer;
+}
+.pricing-plan.active {
+    border: 2px solid #7f5af0;
+    box-shadow: 0 0 20px #7f5af0;
+}
+.pricing-plan h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+.pricing-plan p {
+    font-size: 0.8em;
+    color: #a0a6b1;
+    margin-bottom: 10px;
+}
+.pricing-plan .price {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+.pricing-plan .price span {
+    font-size: 0.4em;
+    color: #a0a6b1;
+}
+.pricing-plan button {
+    background-color: #1f2a48;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+.pricing-plan button:hover {
+    background-color: #2a3b67;
+}
+.pricing-plan .highlight {
+    background-color: #3a4b8f;
+}
+.pricing-plan ul {
+    list-style: none;
+    padding: 0;
+}
+.pricing-plan ul li {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+.pricing-plan ul li i {
+    color: #4caf50;
+    margin-right: 5px;
+}
+.pricing-plan::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(58, 75, 143, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.pricing-plan:hover::before {
+    opacity: 1;
+}
+.image-container {
+    float: left; /* Floats the image to the left */
+    margin-right: 20px; /* Space between image and text */
+}
+
+.image-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.content {
+    overflow: hidden; /* Ensures the content wraps around the floated image */
+    text-align: left; /* Keeps the text aligned to the left */
+    max-width: 500px;
+}
+
+.content h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: block;
+    margin-top: 20px;
+}
+
+.buttons a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ff3d71;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensures buttons don't break layout */
+    margin-right: 10px;
+}
+
+.buttons a:hover {
+    background-color: #e33d5b;
+}

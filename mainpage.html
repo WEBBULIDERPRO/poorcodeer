@@ -1,0 +1,242 @@
+<html></html>
+ <head>
+  <title>
+   Kavon | Web Design
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script src="https://registry.npmmirror.com/vue/3.3.11/files/dist/vue.global.js">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Poppins:wght@700&amp;family=Pacifico&display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0a0a23;
+      color: white;
+      background-image: url('https://www.transparenttextures.com/patterns/diagmonds.png');
+      background-size: cover;
+    }
+    .highlight {
+      color: #a855f7;
+    }
+    .nav-link {
+      color: white;
+      margin-left: 1rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+    }
+    .nav-link:hover {
+      color: white;
+    }
+    .nav-link.about {
+      border: 2px solid red;
+      box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+    }
+    .nav-link.about:hover {
+      box-shadow: 0 0 20px red, 0 0 30px red, 0 0 40px red;
+    }
+    .nav-link.my-stuff {
+      border: 2px solid blue;
+      box-shadow: 0 0 10px blue, 0 0 20px blue, 0 0 30px blue;
+    }
+    .nav-link.my-stuff:hover {
+      box-shadow: 0 0 20px blue, 0 0 30px blue, 0 0 40px blue;
+    }
+    .nav-link.contact {
+      border: 2px solid green;
+      box-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;
+    }
+    .nav-link.contact:hover {
+      box-shadow: 0 0 20px green, 0 0 30px green, 0 0 40px green;
+    }
+    .hero-text {
+      font-family: 'Poppins', sans-serif;
+    }
+    .vertical-line {
+      width: 2px;
+      height: 150px;
+      background-color: #a855f7;
+      margin-right: 1rem;
+      position: relative;
+    }
+    .ball {
+      width: 10px;
+      height: 10px;
+      background-color: #a855f7;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: -4px;
+      animation: moveUpDown 2s infinite;
+    }
+    @keyframes moveUpDown {
+      0%, 100% {
+        top: 0;
+      }
+      50% {
+        top: 140px;
+      }
+    }
+    .glow-button {
+      background-color: #a855f7;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7, 0 0 30px #a855f7;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+    .glow-button:hover {
+      box-shadow: 0 0 20px #a855f7, 0 0 30px #a855f7, 0 0 40px #a855f7;
+    }
+    .glow-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s ease-out;
+    }
+    .glow-button:active::after {
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 0s;
+    }
+    .typing-text {
+      display: inline-block;
+      border-right: 2px solid #a855f7;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+    @keyframes blink-caret {
+      from, to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: #a855f7;
+      }
+    }
+    .cool-font {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+    }
+  </style>
+ </head>
+ <body>
+  <div class="min-h-screen flex flex-col items-center justify-center relative" id="app">
+   <header class="w-full flex justify-between items-center p-6">
+    <div class="flex items-center">
+     <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+      <i class="fas fa-brain text-white">
+      </i>
+     </div>
+     <span class="ml-3 text-xl font-bold cool-font">
+      KAVON | Web Design
+     </span>
+    </div>
+    <nav>
+     <a class="nav-link about" href="aboutme.html">
+      About
+     </a>
+     <a class="nav-link my-stuff" href="TESTTEST.html">
+      My Stuff
+     </a>
+     <a class="nav-link contact" href="contact.html">
+      Contact
+     </a>
+    </nav>
+   </header>
+   <main class="flex flex-col items-center text-center mt-10">
+    <div class="flex items-center">
+     <div class="vertical-line">
+      <div class="ball">
+      </div>
+     </div>
+     <div>
+      <h1 class="text-5xl hero-text font-bold">
+       <span class="typing-text">
+        Hi, I'm
+        <span class="highlight">
+         KAVON
+        </span>
+       </span>
+      </h1>
+      <p class="text-xl mt-4">
+       🚀 Over 5 Years of Crafting Stunning Websites & UI Designs! 🎨
+       <br/>
+       Looking for a website that grabs attention and delivers results? 💻 With my experience in Website & UI Design, I create tailor-made solutions that not only look amazing but also help your business stand out. Whether it’s an e-commerce site or a sleek portfolio, let’s take your vision to the next level! 🌟 Ready to transform your online presence? Let’s connect! 🔗
+      </p>
+      <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=DmwnWrRsqXhjjfqxSPJQJJLpzJLdMgspHJhhjkDKLWtXqDjZZvSmnnTFHmwHkhjLQpjsRXFHssDL">
+       <button class="glow-button mt-6" @click="showSparks">
+        Book Me
+       </button>
+      </a>
+     </div>
+    </div>
+    <div class="mt-10 relative">
+     <img alt="A computer setup with code on the screen and a gaming PC" class="rounded-lg shadow-lg" height="400" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-RcpoXHkzChYnDbFAyeQ8tamr/user-ehrvabJ3DufsCu8YJ7PqY5gl/img-BtSHqaorX3E3aPQNhGzcg7qH.png?st=2024-09-30T20%3A18%3A07Z&amp;se=2024-09-30T22%3A18%3A07Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-30T12%3A25%3A10Z&amp;ske=2024-10-01T12%3A25%3A10Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=iRyHOCgfoeMW1oJ68RnGa5ph3kLFrkaWhPW/Qltuw0c%3D" width="800"/>
+     <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+      <i class="fas fa-mouse text-white text-2xl">
+      </i>
+     </div>
+    </div>
+   </main>
+  </div>
+  <script>
+   const { createApp, ref } = Vue;
+    createApp({
+      setup() {
+        const showSparks = () => {
+          const button = document.querySelector('.glow-button');
+          const spark = document.createElement('div');
+          spark.className = 'spark';
+          spark.style.position = 'absolute';
+          spark.style.width = '5px';
+          spark.style.height = '5px';
+          spark.style.background = 'white';
+          spark.style.borderRadius = '50%';
+          spark.style.top = `${Math.random() * 100}%`;
+          spark.style.left = `${Math.random() * 100}%`;
+          spark.style.animation = 'spark 0.5s ease-out';
+          button.appendChild(spark);
+          setTimeout(() => {
+            button.removeChild(spark);
+          }, 500);
+        };
+        return { showSparks };
+      }
+    }).mount('#app');
+  </script>
+  <style>
+   @keyframes spark {
+      from {
+        transform: scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
+ </body>
+</html>
